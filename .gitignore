@@ -1,0 +1,25 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.venv/
+backend/.venv/
+env/
+env*/
+.venv*/
+*/.venv/
+
+# Build / dist
+dist/
+build/
+
+# VS Code
+.vscode/
+
+# Env files
+.env
+.env.*
