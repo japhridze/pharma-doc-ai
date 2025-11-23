@@ -9,3 +9,5 @@ scikit-learn
 numpy
 sentence-transformers
 faiss-cpu
+chromadb
+groq>=0.5.0

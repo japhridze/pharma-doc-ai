@@ -1,22 +1,21 @@
 from datetime import datetime
-from typing import Optional, List
+from typing import List
 
 from pydantic import BaseModel
 
 
-class BatchBase(BaseModel):
+# ---------------------------------------------------------------------
+# Batches: create / read models
+# ---------------------------------------------------------------------
+class BatchCreate(BaseModel):
     filename: str
     text: str
 
 
-class BatchCreate(BatchBase):
-    pass
-
-
 class BatchIssue(BaseModel):
-    type: str
-    message: str
-    severity: str  # e.g. "low", "medium", "high"
+    label: str
+    detail: str
+    severity: int
 
 
 class BatchOut(BaseModel):
@@ -25,7 +24,21 @@ class BatchOut(BaseModel):
     risk_score: float
     issues_summary: str
     created_at: datetime
-    issues: Optional[List[BatchIssue]] = []
+    issues: List[BatchIssue] = []
 
     class Config:
         orm_mode = True
+
+
+# ---------------------------------------------------------------------
+# Semantic search
+# ---------------------------------------------------------------------
+class BatchSearchRequest(BaseModel):
+    query: str
+    top_k: int = 5
+
+
+class BatchSearchResult(BaseModel):
+    batch_id: int
+    score: float
+    text: str
